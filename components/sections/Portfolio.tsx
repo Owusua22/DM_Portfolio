@@ -558,7 +558,7 @@ export default function Portfolio() {
                           height: "52px",
                           borderRadius: "50%",
                           background: "#ffffff",
-                          color: INK,
+                     
                           display: "grid",
                           placeItems: "center",
                           boxShadow: "0 10px 25px rgba(0,0,0,0.25)"

@@ -62,7 +62,7 @@ export default function Contact() {
               </div>
 
               <h2 className="display-6 fw-bold mb-3">
-                Let's build something beautiful together
+                Let&apos;s build something beautiful together
               </h2>
               <p className="text-secondary mb-4">
                 Have a project in mind, need branding, or want to discuss a

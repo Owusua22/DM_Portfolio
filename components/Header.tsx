@@ -25,7 +25,7 @@ const SECTION_LINKS = [
 ];
 
 const SOCIALS = [
-  { href: "https://www.linkedin.com/in/sarah-nkansah", icon: "bi-linkedin", }
+  { href: "https://www.linkedin.com/in/sarah-nkansah", icon: "bi-linkedin", label: "LinkedIn" }
 ];
 
 /* ------------------------------------------------------------------ */
@@ -581,7 +581,7 @@ export default function Header() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={s.label}
+                 
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
