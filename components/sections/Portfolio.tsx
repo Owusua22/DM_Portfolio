@@ -461,8 +461,8 @@ export default function Portfolio() {
       `}</style>
 
       <SectionTitle
-        title="Portfolio"
-        description="A curated selection of case studies, marketing projects, visual design suites, and performance UGC videos showcasing results."
+        title="Projects"
+        description="A selection of case studies, marketing projects, visual design suites, and performance UGC videos showcasing results."
       />
 
       <div className="container">

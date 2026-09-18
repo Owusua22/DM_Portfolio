@@ -201,12 +201,7 @@ export default function Resume() {
               <div className="resume-block" data-aos="fade-up">
                 <h2>Work Experience</h2>
 
-                <p className="lead">
-                  Results from digital marketing training, social media
-                  management and brand design  measured in audience growth,
-                  engagement and delivered work.
-                </p>
-
+               
                 <Timeline items={EXPERIENCE} />
               </div>
 
@@ -214,11 +209,7 @@ export default function Resume() {
               <div className="resume-block" data-aos="fade-up" data-aos-delay="100">
                 <h2>Education &amp; Training</h2>
 
-                <p className="lead">
-                  Continuous learning has helped me build a strong foundation
-                  in digital marketing, communication, administration, and
-                  emerging technologies.
-                </p>
+                
 
                 <Timeline items={EDUCATION} />
               </div>

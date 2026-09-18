@@ -5,7 +5,7 @@ import Contact from "@/components/sections/Contact";
 import Hero from "@/components/sections/Hero";
 import Portfolio from "@/components/sections/Portfolio";
 import Resume from "@/components/sections/Resume";
-import Services from "@/components/sections/Services";
+
 import Skills from "@/components/sections/Skills";
 import Testimonials from "@/components/sections/Testimonials";
 
@@ -124,7 +124,7 @@ export default function HomePage() {
         <Resume />
         <Portfolio />
         <Testimonials />
-        <Services />
+      
         <Contact />
       </main>
     </>
