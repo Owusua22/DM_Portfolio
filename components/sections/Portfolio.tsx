@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import SectionTitle from "@/components/SectionTitle";
-import { supabase } from "@/lib/supabase";
+import { STATIC_PORTFOLIO } from "@/lib/portfolioMock";
 
 // ---------- Types ----------
 type SourceType = "case_study" | "project" | "design" | "video";
@@ -168,94 +168,19 @@ export default function Portfolio() {
     };
   }, [modalOpen]);
 
-  // ---------- Fetch ----------
+  // ---------- Static data (no Supabase, no SSR) ----------
   useEffect(() => {
-    let cancelled = false;
-
-    const fetchTable = async (
-      table: string,
-      imageField: string,
-      sourceType: SourceType
-    ): Promise<PortfolioItem[]> => {
-      try {
-        const { data, error } = await supabase
-          .from(table)
-          .select("*")
-          .order("created_at", { ascending: false });
-
-        if (error) return [];
-        if (!data || data.length === 0) return [];
-
-        return data
-          .filter((p: any) => p[imageField])
-          .map((p: any) => {
-            const fallbackImage = String(p[imageField] || "");
-            const galleryImages =
-              sourceType === "design"
-                ? parseGalleryImages(p.gallery, fallbackImage)
-                : [fallbackImage];
-
-            return {
-              id: String(p.id || ""),
-              image: fallbackImage,
-              title: String(p.title || "Untitled"),
-              description: String(p.description || ""),
-              summary: p.summary ? String(p.summary) : "",
-              category: String(p.category || "Uncategorized"),
-              sourceType,
-              videoUrl: p.video_url ? String(p.video_url) : undefined,
-              projectUrl: p.project_url ? String(p.project_url) : undefined,
-              driveUrl: p.drive_url ? String(p.drive_url) : undefined,
-              date: p.date ? String(p.date) : undefined,
-              client: p.client ? String(p.client) : undefined,
-              year: p.year ? String(p.year) : undefined,
-              role: p.role ? String(p.role) : undefined,
-              tools: normalizeStringArray(p.tools),
-              services: normalizeStringArray(p.services),
-              situation: p.situation ? String(p.situation) : undefined,
-              task: p.task ? String(p.task) : undefined,
-              action: p.action ? String(p.action) : undefined,
-              results: p.results ? String(p.results) : undefined,
-              result: p.result ? String(p.result) : undefined,
-              impactLabel: p.impact_label ? String(p.impact_label) : undefined,
-              platform: p.platform ? String(p.platform) : undefined,
-              isFeatured: p.is_featured === true,
-              galleryImages,
-            };
-          });
-      } catch (err) {
-        return [];
-      }
-    };
-
-    const fetchAll = async () => {
-      setLoading(true);
-
-      const [caseStudies, projects, designs, ugc] = await Promise.all([
-        fetchTable("case_studies", "media_url", "case_study"),
-        fetchTable("projects", "media_url", "project"),
-        fetchTable("graphic_designs", "image_url", "design"),
-        fetchTable("ugc_videos", "thumbnail_url", "video"),
-      ]);
-
-      if (cancelled) return;
-
-      const all = [...caseStudies, ...projects, ...designs, ...ugc].sort(
-        (a, b) => {
-          if (a.isFeatured !== b.isFeatured) return a.isFeatured ? -1 : 1;
-          return 0;
-        }
-      );
-
-      setItems(all);
+    // Simulate async loading for smooth skeleton UX, but resolve instantly from static mock
+    setLoading(true);
+    const timer = setTimeout(() => {
+      const sorted = [...STATIC_PORTFOLIO].sort((a, b) => {
+        if (a.isFeatured !== b.isFeatured) return a.isFeatured ? -1 : 1;
+        return 0;
+      });
+      setItems(sorted);
       setLoading(false);
-    };
-
-    fetchAll();
-
-    return () => {
-      cancelled = true;
-    };
+    }, 300);
+    return () => clearTimeout(timer);
   }, []);
 
   const visibleItems = items.filter((i) => i.sourceType === activeTab);

@@ -20,8 +20,10 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/sarah-nkansah";
 const SECTION_LINKS = [
   { href: "#hero",      label: "Home",     icon: "bi-house-door" },
   { href: "#about",     label: "About",    icon: "bi-person" },
-  { href: "#resume",    label: "Resume",   icon: "bi-file-earmark-text" },
+  { href: "#techstack", label: "Stack",    icon: "bi-stack" },
+  { href: "#services",  label: "Services", icon: "bi-briefcase" },
   { href: "#portfolio", label: "Projects", icon: "bi-grid" },
+  { href: "#resume",    label: "Resume",   icon: "bi-file-earmark-text" },
   { href: "#contact",   label: "Contact",  icon: "bi-chat-dots" },
 ];
 
